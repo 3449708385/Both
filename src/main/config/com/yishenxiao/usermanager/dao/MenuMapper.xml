@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.usermanager.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.usermanager.beans.Menu" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="parentId" property="parentid" jdbcType="BIGINT" />
+    <result column="menuName" property="menuname" jdbcType="VARCHAR" />
+    <result column="parentName" property="parentname" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="orderNum" property="ordernum" jdbcType="INTEGER" />
+    <result column="menuDescribe" property="menudescribe" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yishenxiao.usermanager.beans.Menu" extends="BaseResultMap" >
+    <result column="perms" property="perms" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parentId, menuName, parentName, url, type, icon, orderNum, menuDescribe
+  </sql>
+  <sql id="Blob_Column_List" >
+    perms
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.usermanager.beans.Menu" >
+    insert into sys_menu (id, parentId, menuName, 
+      parentName, url, type, 
+      icon, orderNum, menuDescribe, 
+      perms)
+    values (#{id,jdbcType=BIGINT}, #{parentid,jdbcType=BIGINT}, #{menuname,jdbcType=VARCHAR}, 
+      #{parentname,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{icon,jdbcType=VARCHAR}, #{ordernum,jdbcType=INTEGER}, #{menudescribe,jdbcType=VARCHAR}, 
+      #{perms,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.usermanager.beans.Menu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="menuname != null" >
+        menuName,
+      </if>
+      <if test="parentname != null" >
+        parentName,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="ordernum != null" >
+        orderNum,
+      </if>
+      <if test="menudescribe != null" >
+        menuDescribe,
+      </if>
+      <if test="perms != null" >
+        perms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="menuname != null" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentname != null" >
+        #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="menudescribe != null" >
+        #{menudescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="perms != null" >
+        #{perms,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.usermanager.beans.Menu" >
+    update sys_menu
+    <set >
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="menuname != null" >
+        menuName = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="parentname != null" >
+        parentName = #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernum != null" >
+        orderNum = #{ordernum,jdbcType=INTEGER},
+      </if>
+      <if test="menudescribe != null" >
+        menuDescribe = #{menudescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="perms != null" >
+        perms = #{perms,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yishenxiao.usermanager.beans.Menu" >
+    update sys_menu
+    set parentId = #{parentid,jdbcType=BIGINT},
+      menuName = #{menuname,jdbcType=VARCHAR},
+      parentName = #{parentname,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      orderNum = #{ordernum,jdbcType=INTEGER},
+      menuDescribe = #{menudescribe,jdbcType=VARCHAR},
+      perms = #{perms,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.usermanager.beans.Menu" >
+    update sys_menu
+    set parentId = #{parentid,jdbcType=BIGINT},
+      menuName = #{menuname,jdbcType=VARCHAR},
+      parentName = #{parentname,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      orderNum = #{ordernum,jdbcType=INTEGER},
+      menuDescribe = #{menudescribe,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

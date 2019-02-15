@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.TransferAccountsDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.TransferAccountsDetails" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyInfoId" property="digitalcurrencyinfoid" jdbcType="BIGINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="monetary" property="monetary" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="form" property="form" jdbcType="INTEGER" />
+    <result column="fromUserId" property="fromuserid" jdbcType="BIGINT" />
+    <result column="transferDesc" property="transferdesc" jdbcType="VARCHAR" />
+    <result column="OTCStateTransferStatusCode" property="otcstatetransferstatuscode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, digitalCurrencyInfoId, createTime, updateTime, monetary, type, state, 
+    form, fromUserId, transferDesc, OTCStateTransferStatusCode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_transfer_accounts_details
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_transfer_accounts_details
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.TransferAccountsDetails" >
+    insert into sys_transfer_accounts_details (id, userId, digitalCurrencyInfoId, 
+      createTime, updateTime, monetary, 
+      type, state, form, 
+      fromUserId, transferDesc, OTCStateTransferStatusCode
+      )
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{digitalcurrencyinfoid,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{monetary,jdbcType=DECIMAL}, 
+      #{type,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{form,jdbcType=INTEGER}, 
+      #{fromuserid,jdbcType=BIGINT}, #{transferdesc,jdbcType=VARCHAR}, #{otcstatetransferstatuscode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.TransferAccountsDetails" >
+    insert into sys_transfer_accounts_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="monetary != null" >
+        monetary,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="form != null" >
+        form,
+      </if>
+      <if test="fromuserid != null" >
+        fromUserId,
+      </if>
+      <if test="transferdesc != null" >
+        transferDesc,
+      </if>
+      <if test="otcstatetransferstatuscode != null" >
+        OTCStateTransferStatusCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monetary != null" >
+        #{monetary,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="form != null" >
+        #{form,jdbcType=INTEGER},
+      </if>
+      <if test="fromuserid != null" >
+        #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="transferdesc != null" >
+        #{transferdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="otcstatetransferstatuscode != null" >
+        #{otcstatetransferstatuscode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.TransferAccountsDetails" >
+    update sys_transfer_accounts_details
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monetary != null" >
+        monetary = #{monetary,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="form != null" >
+        form = #{form,jdbcType=INTEGER},
+      </if>
+      <if test="fromuserid != null" >
+        fromUserId = #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="transferdesc != null" >
+        transferDesc = #{transferdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="otcstatetransferstatuscode != null" >
+        OTCStateTransferStatusCode = #{otcstatetransferstatuscode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.TransferAccountsDetails" >
+    update sys_transfer_accounts_details
+    set userId = #{userid,jdbcType=BIGINT},
+      digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      monetary = #{monetary,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      form = #{form,jdbcType=INTEGER},
+      fromUserId = #{fromuserid,jdbcType=BIGINT},
+      transferDesc = #{transferdesc,jdbcType=VARCHAR},
+      OTCStateTransferStatusCode = #{otcstatetransferstatuscode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+</mapper>

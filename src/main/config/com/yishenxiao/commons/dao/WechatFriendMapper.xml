@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.WechatFriendMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.WechatFriend" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="INTEGER" />
+    <result column="Uin" property="uin" jdbcType="INTEGER" />
+    <result column="Province" property="province" jdbcType="VARCHAR" />
+    <result column="SnsFlag" property="snsflag" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="DisplayName" property="displayname" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="RemarkName" property="remarkname" jdbcType="VARCHAR" />
+    <result column="KeyWord" property="keyword" jdbcType="VARCHAR" />
+    <result column="Puid" property="puid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createTime, City, Sex, Uin, Province, SnsFlag, UserName, DisplayName, NickName, 
+    RemarkName, KeyWord, Puid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_friend
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_wechat_friend
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.WechatFriend" >
+    insert into sys_wechat_friend (id, createTime, City, 
+      Sex, Uin, Province, 
+      SnsFlag, UserName, DisplayName, 
+      NickName, RemarkName, KeyWord, 
+      Puid)
+    values (#{id,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{city,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{uin,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{snsflag,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{displayname,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{remarkname,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR}, 
+      #{puid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.WechatFriend" >
+    insert into sys_wechat_friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="city != null" >
+        City,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="uin != null" >
+        Uin,
+      </if>
+      <if test="province != null" >
+        Province,
+      </if>
+      <if test="snsflag != null" >
+        SnsFlag,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="displayname != null" >
+        DisplayName,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="remarkname != null" >
+        RemarkName,
+      </if>
+      <if test="keyword != null" >
+        KeyWord,
+      </if>
+      <if test="puid != null" >
+        Puid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="uin != null" >
+        #{uin,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="snsflag != null" >
+        #{snsflag,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkname != null" >
+        #{remarkname,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="puid != null" >
+        #{puid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.WechatFriend" >
+    update sys_wechat_friend
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="city != null" >
+        City = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="uin != null" >
+        Uin = #{uin,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        Province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="snsflag != null" >
+        SnsFlag = #{snsflag,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        DisplayName = #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkname != null" >
+        RemarkName = #{remarkname,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        KeyWord = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="puid != null" >
+        Puid = #{puid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.WechatFriend" >
+    update sys_wechat_friend
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      City = #{city,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=INTEGER},
+      Uin = #{uin,jdbcType=INTEGER},
+      Province = #{province,jdbcType=VARCHAR},
+      SnsFlag = #{snsflag,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      DisplayName = #{displayname,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      RemarkName = #{remarkname,jdbcType=VARCHAR},
+      KeyWord = #{keyword,jdbcType=VARCHAR},
+      Puid = #{puid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryWechatFriend" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_friend
+  </select>
+  <select id="queryWechatFriendByCOU" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_friend where id > #{cou}
+  </select>
+  <select id="queryByUserName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_friend where UserName > #{username}
+  </select>
+  <select id="queryByCounts" resultType="java.lang.Integer">
+    select count(*) from sys_wechat_friend
+  </select>
+  <select id="queryWechatFriendByCounts" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_friend where id > #{start,jdbcType=BIGINT} limit #{eventCounts,jdbcType=INTEGER}
+  </select>
+</mapper>

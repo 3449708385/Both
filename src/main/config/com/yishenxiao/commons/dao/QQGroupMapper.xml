@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.QQGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.QQGroup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="group_Id" property="groupId" jdbcType="BIGINT" />
+    <result column="group_Name" property="groupName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, group_Id, group_Name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qq_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qq_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.QQGroup" >
+    insert into qq_group (id, group_Id, group_Name
+      )
+    values (#{id,jdbcType=INTEGER}, #{groupId,jdbcType=BIGINT}, #{groupName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.QQGroup" >
+    insert into qq_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupId != null" >
+        group_Id,
+      </if>
+      <if test="groupName != null" >
+        group_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.QQGroup" >
+    update qq_group
+    <set >
+      <if test="groupId != null" >
+        group_Id = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="groupName != null" >
+        group_Name = #{groupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.QQGroup" >
+    update qq_group
+    set group_Id = #{groupId,jdbcType=BIGINT},
+      group_Name = #{groupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryQQGroupData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from qq_group
+  </select>
+</mapper>

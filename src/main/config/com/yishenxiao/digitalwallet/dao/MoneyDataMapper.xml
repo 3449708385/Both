@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.MoneyDataMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.MoneyData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="coinName" property="coinname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="imageUrl" property="imageurl" jdbcType="VARCHAR" />
+    <result column="marketPrice" property="marketprice" jdbcType="DECIMAL" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, coinName, name, imageUrl, marketPrice, time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_money_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_money_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.MoneyData" >
+    insert into sys_money_data (id, coinName, name, 
+      imageUrl, marketPrice, time
+      )
+    values (#{id,jdbcType=BIGINT}, #{coinname,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{imageurl,jdbcType=VARCHAR}, #{marketprice,jdbcType=DECIMAL}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.MoneyData" >
+    insert into sys_money_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="coinname != null" >
+        coinName,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="imageurl != null" >
+        imageUrl,
+      </if>
+      <if test="marketprice != null" >
+        marketPrice,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="coinname != null" >
+        #{coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null" >
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="marketprice != null" >
+        #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.MoneyData" >
+    update sys_money_data
+    <set >
+      <if test="coinname != null" >
+        coinName = #{coinname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null" >
+        imageUrl = #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="marketprice != null" >
+        marketPrice = #{marketprice,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.MoneyData" >
+    update sys_money_data
+    set coinName = #{coinname,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      imageUrl = #{imageurl,jdbcType=VARCHAR},
+      marketPrice = #{marketprice,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_money_data
+  </select>
+</mapper>

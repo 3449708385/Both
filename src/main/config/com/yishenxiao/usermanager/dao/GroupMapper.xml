@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.usermanager.dao.GroupMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.usermanager.beans.Group" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="easemobGroupId" property="easemobgroupid" jdbcType="VARCHAR" />
+    <result column="groupName" property="groupname" jdbcType="VARCHAR" />
+    <result column="groupDesc" property="groupdesc" jdbcType="VARCHAR" />
+    <result column="groupIcon" property="groupicon" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="groupOwner" property="groupowner" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="groupCategoryId" property="groupcategoryid" jdbcType="BIGINT" />
+    <result column="rdIndex" property="rdindex" jdbcType="INTEGER" />
+    <result column="groupCount" property="groupcount" jdbcType="INTEGER" />
+    <result column="groupNameCode" property="groupnamecode" jdbcType="VARCHAR" />
+    <result column="molGroup" property="molgroup" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, easemobGroupId, groupName, groupDesc, groupIcon, createTime, groupOwner, updateTime, 
+    userName, groupCategoryId, rdIndex, groupCount, groupNameCode, molGroup
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_group
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.usermanager.beans.Group" >
+    insert into sys_group (id, easemobGroupId, groupName, 
+      groupDesc, groupIcon, createTime, 
+      groupOwner, updateTime, userName, 
+      groupCategoryId, rdIndex, groupCount, 
+      groupNameCode, molGroup)
+    values (#{id,jdbcType=BIGINT}, #{easemobgroupid,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR}, 
+      #{groupdesc,jdbcType=VARCHAR}, #{groupicon,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{groupowner,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{username,jdbcType=VARCHAR}, 
+      #{groupcategoryid,jdbcType=BIGINT}, #{rdindex,jdbcType=INTEGER}, #{groupcount,jdbcType=INTEGER}, 
+      #{groupnamecode,jdbcType=VARCHAR}, #{molgroup,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.usermanager.beans.Group" >
+    insert into sys_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="easemobgroupid != null" >
+        easemobGroupId,
+      </if>
+      <if test="groupname != null" >
+        groupName,
+      </if>
+      <if test="groupdesc != null" >
+        groupDesc,
+      </if>
+      <if test="groupicon != null" >
+        groupIcon,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="groupowner != null" >
+        groupOwner,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="groupcategoryid != null" >
+        groupCategoryId,
+      </if>
+      <if test="rdindex != null" >
+        rdIndex,
+      </if>
+      <if test="groupcount != null" >
+        groupCount,
+      </if>
+      <if test="groupnamecode != null" >
+        groupNameCode,
+      </if>
+      <if test="molgroup != null" >
+        molGroup,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="easemobgroupid != null" >
+        #{easemobgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupdesc != null" >
+        #{groupdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupicon != null" >
+        #{groupicon,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupowner != null" >
+        #{groupowner,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="groupcategoryid != null" >
+        #{groupcategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="rdindex != null" >
+        #{rdindex,jdbcType=INTEGER},
+      </if>
+      <if test="groupcount != null" >
+        #{groupcount,jdbcType=INTEGER},
+      </if>
+      <if test="groupnamecode != null" >
+        #{groupnamecode,jdbcType=VARCHAR},
+      </if>
+      <if test="molgroup != null" >
+        #{molgroup,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.usermanager.beans.Group" >
+    update sys_group
+    <set >
+      <if test="easemobgroupid != null" >
+        easemobGroupId = #{easemobgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        groupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupdesc != null" >
+        groupDesc = #{groupdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupicon != null" >
+        groupIcon = #{groupicon,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupowner != null" >
+        groupOwner = #{groupowner,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="groupcategoryid != null" >
+        groupCategoryId = #{groupcategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="rdindex != null" >
+        rdIndex = #{rdindex,jdbcType=INTEGER},
+      </if>
+      <if test="groupcount != null" >
+        groupCount = #{groupcount,jdbcType=INTEGER},
+      </if>
+      <if test="groupnamecode != null" >
+        groupNameCode = #{groupnamecode,jdbcType=VARCHAR},
+      </if>
+      <if test="molgroup != null" >
+        molGroup = #{molgroup,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.usermanager.beans.Group" >
+    update sys_group
+    set easemobGroupId = #{easemobgroupid,jdbcType=VARCHAR},
+      groupName = #{groupname,jdbcType=VARCHAR},
+      groupDesc = #{groupdesc,jdbcType=VARCHAR},
+      groupIcon = #{groupicon,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      groupOwner = #{groupowner,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      userName = #{username,jdbcType=VARCHAR},
+      groupCategoryId = #{groupcategoryid,jdbcType=BIGINT},
+      rdIndex = #{rdindex,jdbcType=INTEGER},
+      groupCount = #{groupcount,jdbcType=INTEGER},
+      groupNameCode = #{groupnamecode,jdbcType=VARCHAR},
+      molGroup = #{molgroup,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="insertGroupList" useGeneratedKeys="true" parameterType="java.util.List">  
+    <selectKey resultType="long" keyProperty="id" order="AFTER">  
+        SELECT  
+        LAST_INSERT_ID()  
+    </selectKey>  
+    insert into sys_group (easemobGroupId, groupName, 
+      groupIcon, createTime, groupOwner, 
+      updateTime, userName, groupCategoryId, rdIndex, groupCount, groupNameCode, molGroup)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.easemobgroupid},#{item.groupname},#{item.groupicon},
+         #{item.createtime},#{item.groupowner},#{item.updatetime},#{item.username},
+         #{item.groupcategoryid},#{item.rdindex},#{item.groupcount},#{item.groupnamecode}, #{item.molgroup})
+    </foreach>  
+  </insert>
+  <select id="queryByNickName" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    where groupName = #{nickname,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByGCId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    where groupCategoryId = #{groupcategoryid,jdbcType=VARCHAR} order by rdIndex desc limit #{cou}
+  </select>
+  <update id="updateGroupRCoefficient" parameterType="Map" >
+    update sys_group
+    set rdIndex = #{rdindex,jdbcType=INTEGER}
+    where id = #{groupId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group order by rdIndex desc
+  </select>
+  <delete id="deleteData" parameterType="java.lang.String" >
+    delete from sys_group
+    where easemobGroupId = #{groupId,jdbcType=BIGINT}
+  </delete>
+  <update id="updateGroupData" parameterType="Map" >
+    update sys_group
+    <set >
+      <if test="groupName != null" >
+        groupName = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDesc != null" >
+        groupDesc = #{groupDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{groupId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where userName=#{username,jdbcType=VARCHAR} 
+  </select>
+  <select id="queryByGroupCategoryId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupCategoryId=#{categoryId,jdbcType=BIGINT} order by groupCount desc limit #{cou,jdbcType=BIGINT}
+  </select>
+  <select id="qureyUserData" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_group where id in
+    <foreach collection="list" item="item" index="index"  open=" (" close=") " separator=",">
+      #{item}
+    </foreach>
+  </select>
+   <select id="queryByownr" resultMap="BaseResultMap" parameterType="map">
+  	select 
+    	<include refid="Base_Column_List" />
+    	from sys_group where easemobGroupId=#{eId,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByeasemobId" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where easemobGroupId=#{eId,jdbcType=VARCHAR} 
+  </select>
+  <update id="updateGroupHead" parameterType="Map" >
+    update sys_group
+    set groupIcon = #{httpGroupHead,jdbcType=INTEGER}
+    where easemobgroupid = #{easemobGroupId,jdbcType=VARCHAR}
+  </update>
+  <select id="queryByList" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    where easemobGroupId in
+    <foreach collection="list" item="item" index="index"  open=" (" close=") " separator=",">
+      #{item}
+    </foreach> 
+  </select>
+  <update id="updataGroupType" parameterType="Map" >
+    update sys_group
+    set groupCategoryId = #{id,jdbcType=INTEGER}
+    where groupName = #{nickname,jdbcType=VARCHAR}
+  </update>
+  <update id="updataGroupData" parameterType="Map" >
+    update sys_group
+    set userName = #{username,jdbcType=INTEGER}
+    where groupName = #{nickname,jdbcType=VARCHAR}
+  </update>
+  <select id="queryByGroupData" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupName=#{nickname,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByGroupDataMD5" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupNameCode=#{nicknamemd5,jdbcType=VARCHAR}
+  </select>
+  <update id="updateGroupCount" parameterType="Map" >
+    update sys_group
+    set groupCount = groupCount+1
+    where easemobGroupId = #{easemobId,jdbcType=VARCHAR}
+  </update>
+  <update id="updataGroupUserName" parameterType="Map" >
+    update sys_group
+    set username = #{username,jdbcType=INTEGER}
+    where groupName = #{nickname,jdbcType=VARCHAR}
+  </update>
+  <select id="queryByArray" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    where easemobGroupId in
+    <foreach collection="array" item="item" index="index"  open=" (" close=") " separator=",">
+      #{item}
+    </foreach> 
+  </select>
+  <select id="queryByGroupNameCode" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupNameCode=#{groupNameCode,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByGroupName" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupName=#{groupName,jdbcType=VARCHAR}
+  </select>
+  <update id="updataGroupTaget" parameterType="Map" >
+    update sys_group
+    set groupCategoryId = #{groupcategoryid,jdbcType=INTEGER}
+    where groupNameCode = #{groupnamecode,jdbcType=BIGINT}
+  </update>
+  <update id="updateGroupInfoData" parameterType="Map" >
+    update sys_group
+    set groupOwner = #{groupowner,jdbcType=VARCHAR} ,
+        groupcount = #{groupcount,jdbcType=INTEGER}
+    where id = #{groupId,jdbcType=BIGINT}
+  </update>
+  <update id="updateGroupHeadAndGroupname" parameterType="Map" >
+    update sys_group
+    <set >
+      <if test="groupname != null" >
+        groupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupicon != null" >
+        groupIcon = #{groupicon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where easemobGroupId = #{easemodGroupId,jdbcType=VARCHAR}
+  </update>
+  <select id="queryByRealData" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupCategoryId>0 and groupnamecode!=''
+  </select>
+  <select id="queryByRebootData" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupCategoryId>1 and groupnamecode!=''
+  </select>
+  <select id="queryByGroupCategoryIdCount" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupCategoryId=#{categoryId,jdbcType=BIGINT} 
+    <if test="categoryId != 1" >
+        and groupcount>#{memberCount,jdbcType=BIGINT}  order by rdIndex desc
+    </if>
+    <if test="categoryId == 1" >
+        and groupcount>=0  order by createTime asc 
+    </if>
+    limit #{cou,jdbcType=BIGINT}
+  </select>
+  <select id="queryByGroupCategoryIdCountAstrict" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupCategoryId=#{categoryId,jdbcType=BIGINT}
+    <if test="categoryId != 1" >
+       and groupcount>#{memberCount,jdbcType=BIGINT}  and groupcount &lt; #{limitCount,jdbcType=BIGINT} order by rdIndex desc limit #{cou,jdbcType=BIGINT}
+    </if>
+    <if test="categoryId == 1" >
+       and groupcount>=0  and groupcount &lt; #{limitCount,jdbcType=BIGINT} order by createTime asc limit 1
+    </if>
+  </select>
+  <select id="queryByGroupCategoryIdCountNew" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where groupCategoryId=#{categoryId,jdbcType=BIGINT}
+    <if test="categoryId != 1" >
+       and groupcount>#{memberCount,jdbcType=BIGINT}  and groupcount &lt; #{limitCount,jdbcType=BIGINT} order by rdIndex desc
+    </if>
+    <if test="categoryId == 1" >
+       and groupcount>=0 and groupcount &lt; #{limitCount,jdbcType=BIGINT} order by createTime asc 
+    </if>
+    limit #{cou,jdbcType=BIGINT}
+  </select>
+  <select id="queryByGroupCodeNotNull" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group
+    where groupNameCode is not null and groupCategoryId!=0 
+  </select>
+  <select id="queryByeasemobIdList" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where easemobGroupId=#{eId,jdbcType=VARCHAR} 
+  </select>
+  <update id="updateGropCountSet" parameterType="Map" >
+    update sys_group
+    set groupcount = #{size,jdbcType=INTEGER}
+    where id = #{groupId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByRealAndOfficialCount" resultType="integer" parameterType="Map">
+    select count(*) from sys_group where easemobGroupId is not NULL
+  </select>
+  <select id="queryByTempData" resultMap="BaseResultMap" parameterType="Map">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group where id > #{start,jdbcType=BIGINT} order by createTime asc limit #{eventCounts,jdbcType=INTEGER}
+  </select>
+</mapper>

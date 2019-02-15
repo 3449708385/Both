@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.DigitalCurrencyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.DigitalCurrencyInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="digitalCurrencyName" property="digitalcurrencyname" jdbcType="VARCHAR" />
+    <result column="digitalCurrencyAddr" property="digitalcurrencyaddr" jdbcType="VARCHAR" />
+    <result column="digitalCurrencyInfoId" property="digitalcurrencyinfoid" jdbcType="BIGINT" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="tokenDecimal" property="tokendecimal" jdbcType="INTEGER" />
+    <result column="realBalanceLimit" property="realbalancelimit" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, digitalCurrencyName, digitalCurrencyAddr, digitalCurrencyInfoId, fee, tokenDecimal,
+    realBalanceLimit
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_digital_currency_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.DigitalCurrencyInfo" >
+    insert into sys_digital_currency_info (id, digitalCurrencyName, digitalCurrencyAddr, 
+      digitalCurrencyInfoId, fee, tokenDecimal, 
+      realBalanceLimit)
+    values (#{id,jdbcType=BIGINT}, #{digitalcurrencyname,jdbcType=VARCHAR}, #{digitalcurrencyaddr,jdbcType=VARCHAR}, 
+      #{digitalcurrencyinfoid,jdbcType=BIGINT}, #{fee,jdbcType=DECIMAL}, #{tokendecimal,jdbcType=INTEGER}, 
+      #{realbalancelimit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.DigitalCurrencyInfo" >
+    insert into sys_digital_currency_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="digitalcurrencyname != null" >
+        digitalCurrencyName,
+      </if>
+      <if test="digitalcurrencyaddr != null" >
+        digitalCurrencyAddr,
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="tokendecimal != null" >
+        tokenDecimal,
+      </if>
+      <if test="realbalancelimit != null" >
+        realBalanceLimit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyname != null" >
+        #{digitalcurrencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="digitalcurrencyaddr != null" >
+        #{digitalcurrencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="tokendecimal != null" >
+        #{tokendecimal,jdbcType=INTEGER},
+      </if>
+      <if test="realbalancelimit != null" >
+        #{realbalancelimit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.DigitalCurrencyInfo" >
+    update sys_digital_currency_info
+    <set >
+      <if test="digitalcurrencyname != null" >
+        digitalCurrencyName = #{digitalcurrencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="digitalcurrencyaddr != null" >
+        digitalCurrencyAddr = #{digitalcurrencyaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=DECIMAL},
+      </if>
+      <if test="tokendecimal != null" >
+        tokenDecimal = #{tokendecimal,jdbcType=INTEGER},
+      </if>
+      <if test="realbalancelimit != null" >
+        realBalanceLimit = #{realbalancelimit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.DigitalCurrencyInfo" >
+    update sys_digital_currency_info
+    set digitalCurrencyName = #{digitalcurrencyname,jdbcType=VARCHAR},
+      digitalCurrencyAddr = #{digitalcurrencyaddr,jdbcType=VARCHAR},
+      digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      fee = #{fee,jdbcType=DECIMAL},
+      tokenDecimal = #{tokendecimal,jdbcType=INTEGER},
+      realBalanceLimit = #{realbalancelimit,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByDigitalcurrencyname" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+    where digitalCurrencyName = #{currency,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByDigitalcurrencynameForList" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+    where digitalCurrencyName = #{digitalCurrencyName,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByCurrencyType" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+    where digitalCurrencyName = #{digitalCurrencyName,jdbcType=VARCHAR} and digitalCurrencyInfoId = #{pid,jdbcType=BIGINT}
+  </select>
+  <select id="queryByDigitalCurrencyAddr" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+    where digitalCurrencyAddr = #{token,jdbcType=VARCHAR} and digitalCurrencyInfoId = #{pid,jdbcType=BIGINT}
+  </select>
+  <select id="queryByData" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+  </select>
+  <select id="queryByDigitalCurrencyId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_digital_currency_info
+    where id = #{digitalcurrencyinfoid,jdbcType=BIGINT}
+  </select>
+</mapper>

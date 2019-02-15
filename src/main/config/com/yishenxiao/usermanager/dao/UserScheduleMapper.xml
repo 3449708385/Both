@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.usermanager.dao.UserScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.usermanager.beans.UserSchedule" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="nickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="purseAddress" property="purseaddress" jdbcType="VARCHAR" />
+    <result column="headIcon" property="headicon" jdbcType="VARCHAR" />
+    <result column="paymentpw" property="paymentpw" jdbcType="VARCHAR" />
+    <result column="monetary" property="monetary" jdbcType="DECIMAL" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="paypwOne" property="paypwone" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nickName, userId, createTime, purseAddress, headIcon, paymentpw, monetary, updateTime, 
+    paypwOne
+  </sql>
+  <sql id="Base_Column_List2" >
+    id, nickName, userId, createTime, purseAddress, headIcon, monetary, updateTime, 
+    paypwOne
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_schedule
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user_schedule
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.usermanager.beans.UserSchedule" >
+    insert into sys_user_schedule (id, nickName, userId, 
+      createTime, purseAddress, headIcon, 
+      paymentpw, monetary, updateTime, 
+      paypwOne)
+    values (#{id,jdbcType=BIGINT}, #{nickname,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{purseaddress,jdbcType=VARCHAR}, #{headicon,jdbcType=VARCHAR}, 
+      #{paymentpw,jdbcType=VARCHAR}, #{monetary,jdbcType=DECIMAL}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{paypwone,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.usermanager.beans.UserSchedule" >
+    insert into sys_user_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="purseaddress != null" >
+        purseAddress,
+      </if>
+      <if test="headicon != null" >
+        headIcon,
+      </if>
+      <if test="paymentpw != null" >
+        paymentpw,
+      </if>
+      <if test="monetary != null" >
+        monetary,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="paypwone != null" >
+        paypwOne,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purseaddress != null" >
+        #{purseaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="headicon != null" >
+        #{headicon,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentpw != null" >
+        #{paymentpw,jdbcType=VARCHAR},
+      </if>
+      <if test="monetary != null" >
+        #{monetary,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paypwone != null" >
+        #{paypwone,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.usermanager.beans.UserSchedule" >
+    update sys_user_schedule
+    <set >
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purseaddress != null" >
+        purseAddress = #{purseaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="headicon != null" >
+        headIcon = #{headicon,jdbcType=VARCHAR},
+      </if>
+      <if test="monetary != null" >
+        monetary = #{monetary,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paypwone != null" >
+        paypwOne = #{paypwone,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.usermanager.beans.UserSchedule" >
+    update sys_user_schedule
+    set nickName = #{nickname,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      purseAddress = #{purseaddress,jdbcType=VARCHAR},
+      headIcon = #{headicon,jdbcType=VARCHAR},
+      monetary = #{monetary,jdbcType=DECIMAL},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      paypwOne = #{paypwone,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List2" />
+    from sys_user_schedule
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <update id="updateNickname" parameterType="Map" >
+    update sys_user_schedule
+    set nickName = #{nickName,jdbcType=VARCHAR}
+    where userId = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updatepaypw" parameterType="Map" >
+    update sys_user_schedule
+    set paymentpw = #{paypw,jdbcType=VARCHAR},
+    paypwOne = paypwOne+1
+    where userId = #{userId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByPaypw" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_schedule
+    where id = #{id,jdbcType=BIGINT} and paymentpw = #{paypw,jdbcType=VARCHAR}
+  </select>
+  <update id="updateHeadPriture" parameterType="Map" >
+    update sys_user_schedule
+    set headIcon = #{filePath,jdbcType=VARCHAR}
+    where userId = #{userId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserIdList" resultMap="BaseResultMap" parameterType="Map" >
+    select
+    <include refid="Base_Column_List2" />
+    from sys_user_schedule where userId in
+    <foreach collection="list" item="item" index="index"  open=" (" close=") " separator=",">
+      #{item}
+    </foreach>
+  </select>
+  <select id="queryByPurseAddress" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List2" />
+    from sys_user_schedule
+    where purseAddress = #{purseAddress,jdbcType=VARCHAR};
+  </select>
+  <select id="queryByNickName" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List2" /> 
+    from sys_user_group,sys_user_schedule 
+    where groupId=#{groupId,jdbcType=BIGINT} and sys_user_schedule.userId=sys_user_group.userId and sys_user_schedule.nickName=#{nickname,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByNickNameData" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List2" />
+    from sys_user_schedule
+    where nickName = #{nickname,jdbcType=VARCHAR};
+  </select>
+  <select id="queryByUserIdS" resultMap="BaseResultMap" parameterType="java.util.List" >
+    select 
+    <include refid="Base_Column_List2" />
+    from sys_user_schedule
+    where userId in
+    <foreach collection="list" item="item" index="index"  open=" (" close=") " separator=",">
+      #{item}
+   </foreach> 
+  </select>
+  <select id="queryByUIdList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List2" />
+    from sys_user_schedule
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByuserId" parameterType="java.lang.Long" >
+    delete from sys_user_schedule
+    where userId = #{userId,jdbcType=BIGINT}
+  </delete>
+  <select id="queryByTempUserHead" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+   select * from sys_user_schedule where headIcon = 'http://13.125.122.136:8088/Avatar/user.png' and  id > #{start,jdbcType=BIGINT} order by createTime asc limit #{eventCounts,jdbcType=INTEGER}
+  </select>
+  <select id="queryByCount" resultType="integer" parameterType="java.lang.Long" >
+   select count(*) from sys_user_schedule
+  </select>
+</mapper>

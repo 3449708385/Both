@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yishenxiao.commons.dao.FunctionMapper">
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.Function">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="function_name" jdbcType="VARCHAR" property="functionName" />
+    <result column="function_desc" jdbcType="VARCHAR" property="functionDesc" />
+    <result column="function_url" jdbcType="VARCHAR" property="functionUrl" />
+    <result column="is_show" jdbcType="BIT" property="show" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_enabled" jdbcType="BIT" property="enabled" />
+    <result column="is_deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <select id="queryFunction" resultMap="BaseResultMap">
+    select id, function_name, function_url, is_show from sys_function
+  </select>
+</mapper>

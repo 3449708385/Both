@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.DataTestMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.DataTest" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="VARCHAR" />
+    <result column="AttrStatus" property="attrstatus" jdbcType="VARCHAR" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="Province" property="province" jdbcType="VARCHAR" />
+    <result column="SnsFlag" property="snsflag" jdbcType="VARCHAR" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="DisplayName" property="displayname" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="MemberCount" property="membercount" jdbcType="VARCHAR" />
+    <result column="RemarkName" property="remarkname" jdbcType="VARCHAR" />
+    <result column="KeyWord" property="keyword" jdbcType="VARCHAR" />
+    <result column="Owner" property="owner" jdbcType="VARCHAR" />
+    <result column="Puid" property="puid" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="Q" property="q" jdbcType="VARCHAR" />
+    <result column="R" property="r" jdbcType="VARCHAR" />
+    <result column="S" property="s" jdbcType="VARCHAR" />
+    <result column="T" property="t" jdbcType="VARCHAR" />
+    <result column="U" property="u" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.DataTest" >
+    insert into sys_data_test (id, createTime, AttrStatus, 
+      City, Sex, Province, 
+      SnsFlag, UserName, DisplayName, 
+      NickName, MemberCount, RemarkName, 
+      KeyWord, Owner, Puid, 
+      type, Q, R, S, 
+      T, U)
+    values (#{id,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{attrstatus,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{snsflag,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{displayname,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{membercount,jdbcType=VARCHAR}, #{remarkname,jdbcType=VARCHAR}, 
+      #{keyword,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{puid,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{q,jdbcType=VARCHAR}, #{r,jdbcType=VARCHAR}, #{s,jdbcType=VARCHAR}, 
+      #{t,jdbcType=VARCHAR}, #{u,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.DataTest" >
+    insert into sys_data_test
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="attrstatus != null" >
+        AttrStatus,
+      </if>
+      <if test="city != null" >
+        City,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="province != null" >
+        Province,
+      </if>
+      <if test="snsflag != null" >
+        SnsFlag,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="displayname != null" >
+        DisplayName,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="membercount != null" >
+        MemberCount,
+      </if>
+      <if test="remarkname != null" >
+        RemarkName,
+      </if>
+      <if test="keyword != null" >
+        KeyWord,
+      </if>
+      <if test="owner != null" >
+        Owner,
+      </if>
+      <if test="puid != null" >
+        Puid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="q != null" >
+        Q,
+      </if>
+      <if test="r != null" >
+        R,
+      </if>
+      <if test="s != null" >
+        S,
+      </if>
+      <if test="t != null" >
+        T,
+      </if>
+      <if test="u != null" >
+        U,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="attrstatus != null" >
+        #{attrstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="snsflag != null" >
+        #{snsflag,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="membercount != null" >
+        #{membercount,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkname != null" >
+        #{remarkname,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="puid != null" >
+        #{puid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="q != null" >
+        #{q,jdbcType=VARCHAR},
+      </if>
+      <if test="r != null" >
+        #{r,jdbcType=VARCHAR},
+      </if>
+      <if test="s != null" >
+        #{s,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        #{t,jdbcType=VARCHAR},
+      </if>
+      <if test="u != null" >
+        #{u,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="queryByNickName" resultMap="BaseResultMap" parameterType="Map">
+    select * from sys_data_test where type=#{groupcategoryname,jdbcType=VARCHAR} 
+  </select>
+</mapper>

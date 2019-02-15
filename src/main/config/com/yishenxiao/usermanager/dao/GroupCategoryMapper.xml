@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.usermanager.dao.GroupCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.usermanager.beans.GroupCategory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="groupCategoryName" property="groupcategoryname" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="classificationDescribe" property="classificationdescribe" jdbcType="VARCHAR" />
+    <result column="rdIndex" property="rdindex" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, groupCategoryName, createTime, updateTime, classificationDescribe, rdIndex, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_group_category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.usermanager.beans.GroupCategory" >
+    insert into sys_group_category (id, groupCategoryName, createTime, 
+      updateTime, classificationDescribe, rdIndex, 
+      state)
+    values (#{id,jdbcType=BIGINT}, #{groupcategoryname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{classificationdescribe,jdbcType=VARCHAR}, #{rdindex,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.usermanager.beans.GroupCategory" >
+    insert into sys_group_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupcategoryname != null" >
+        groupCategoryName,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="classificationdescribe != null" >
+        classificationDescribe,
+      </if>
+      <if test="rdindex != null" >
+        rdIndex,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="groupcategoryname != null" >
+        #{groupcategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classificationdescribe != null" >
+        #{classificationdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="rdindex != null" >
+        #{rdindex,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.usermanager.beans.GroupCategory" >
+    update sys_group_category
+    <set >
+      <if test="groupcategoryname != null" >
+        groupCategoryName = #{groupcategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classificationdescribe != null" >
+        classificationDescribe = #{classificationdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="rdindex != null" >
+        rdIndex = #{rdindex,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.usermanager.beans.GroupCategory" >
+    update sys_group_category
+    set groupCategoryName = #{groupcategoryname,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      classificationDescribe = #{classificationdescribe,jdbcType=VARCHAR},
+      rdIndex = #{rdindex,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group_category order by rdIndex desc
+  </select>
+  <update id="updateGroupCategory" parameterType="Map" >
+    update sys_group_category
+    <set >
+      <if test="groupcategoryname != null" >
+        groupCategoryName = #{groupcategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupdescribe != null" >
+        classificationDescribe = #{groupdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="rdindex != null" >
+        rdIndex = #{rdindex,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{groupcategoryId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByGroupName" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group_category
+    where groupCategoryName = #{groupcategoryname,jdbcType=VARCHAR}
+  </select>
+</mapper>

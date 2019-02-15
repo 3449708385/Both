@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.ProtertiesDataMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.ProtertiesData" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dataKey" property="datakey" jdbcType="VARCHAR" />
+    <result column="dataValue" property="datavalue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dataKey, dataValue
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_proterties_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_proterties_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.ProtertiesData" >
+    insert into sys_proterties_data (id, dataKey, dataValue
+      )
+    values (#{id,jdbcType=BIGINT}, #{datakey,jdbcType=VARCHAR}, #{datavalue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.ProtertiesData" >
+    insert into sys_proterties_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="datakey != null" >
+        dataKey,
+      </if>
+      <if test="datavalue != null" >
+        dataValue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="datakey != null" >
+        #{datakey,jdbcType=VARCHAR},
+      </if>
+      <if test="datavalue != null" >
+        #{datavalue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.ProtertiesData" >
+    update sys_proterties_data
+    <set >
+      <if test="datakey != null" >
+        dataKey = #{datakey,jdbcType=VARCHAR},
+      </if>
+      <if test="datavalue != null" >
+        dataValue = #{datavalue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.ProtertiesData" >
+    update sys_proterties_data
+    set dataKey = #{datakey,jdbcType=VARCHAR},
+      dataValue = #{datavalue,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByDataKeyList" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_proterties_data
+    where dataKey = #{dataKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

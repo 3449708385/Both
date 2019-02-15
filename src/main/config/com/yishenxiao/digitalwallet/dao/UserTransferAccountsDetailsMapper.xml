@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.UserTransferAccountsDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.UserTransferAccountsDetails" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyInfoId" property="digitalcurrencyinfoid" jdbcType="BIGINT" />
+    <result column="toUserId" property="touserid" jdbcType="BIGINT" />
+    <result column="transferType" property="transfertype" jdbcType="SMALLINT" />
+    <result column="transferValue" property="transfervalue" jdbcType="DECIMAL" />
+    <result column="transferStatus" property="transferstatus" jdbcType="SMALLINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="enabled" property="enabled" jdbcType="BIT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, digitalCurrencyInfoId, toUserId, transferType, transferValue, transferStatus, 
+    remark, createTime, updateTime, enabled, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user_transfer_accounts_details
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.UserTransferAccountsDetails" >
+    insert into sys_user_transfer_accounts_details (id, userId, digitalCurrencyInfoId, 
+      toUserId, transferType, transferValue, 
+      transferStatus, remark, createTime, 
+      updateTime, enabled, deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{digitalcurrencyinfoid,jdbcType=BIGINT}, 
+      #{touserid,jdbcType=BIGINT}, #{transfertype,jdbcType=SMALLINT}, #{transfervalue,jdbcType=DECIMAL}, 
+      #{transferstatus,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BIT}, #{deleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.UserTransferAccountsDetails" >
+    insert into sys_user_transfer_accounts_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId,
+      </if>
+      <if test="touserid != null" >
+        toUserId,
+      </if>
+      <if test="transfertype != null" >
+        transferType,
+      </if>
+      <if test="transfervalue != null" >
+        transferValue,
+      </if>
+      <if test="transferstatus != null" >
+        transferStatus,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="touserid != null" >
+        #{touserid,jdbcType=BIGINT},
+      </if>
+      <if test="transfertype != null" >
+        #{transfertype,jdbcType=SMALLINT},
+      </if>
+      <if test="transfervalue != null" >
+        #{transfervalue,jdbcType=DECIMAL},
+      </if>
+      <if test="transferstatus != null" >
+        #{transferstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.UserTransferAccountsDetails" >
+    update sys_user_transfer_accounts_details
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="touserid != null" >
+        toUserId = #{touserid,jdbcType=BIGINT},
+      </if>
+      <if test="transfertype != null" >
+        transferType = #{transfertype,jdbcType=SMALLINT},
+      </if>
+      <if test="transfervalue != null" >
+        transferValue = #{transfervalue,jdbcType=DECIMAL},
+      </if>
+      <if test="transferstatus != null" >
+        transferStatus = #{transferstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.UserTransferAccountsDetails" >
+    update sys_user_transfer_accounts_details
+    set userId = #{userid,jdbcType=BIGINT},
+      digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      toUserId = #{touserid,jdbcType=BIGINT},
+      transferType = #{transfertype,jdbcType=SMALLINT},
+      transferValue = #{transfervalue,jdbcType=DECIMAL},
+      transferStatus = #{transferstatus,jdbcType=SMALLINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=BIT},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <select id="queryTransferDataByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and transferType != 3
+  </select>
+  <select id="queryTransferPassiveDataByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where toUserId = #{userId,jdbcType=BIGINT} and transferType != 3
+  </select>
+  <select id="queryRechargeDataByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and transferType = 3
+  </select>
+  
+  <select id="queryTransferDataByUserIdAndCurrency" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT} and transferType != 3
+  </select>
+  <select id="queryTransferPassiveDataByUserIdAndCurrency" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where toUserId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT} and transferType != 3
+  </select>
+  <select id="queryRechargeDataByUserIdAndCurrency" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT} and transferType = 3
+  </select>
+</mapper>

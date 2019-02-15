@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.RedEnvelopesMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.RedEnvelopes" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="REDesc" property="redesc" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="useCount" property="usecount" jdbcType="INTEGER" />
+    <result column="redisKey" property="rediskey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, currency, amount, REDesc, count, state, createTime, updateTime, useCount, 
+    redisKey
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_red_envelopes
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopes" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_red_envelopes (id, userId, currency, 
+      amount, REDesc, count, 
+      state, createTime, updateTime, 
+      useCount, redisKey)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{currency,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{redesc,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{usecount,jdbcType=INTEGER}, #{rediskey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopes" useGeneratedKeys="true" keyProperty="id">
+    insert into sys_red_envelopes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="redesc != null" >
+        REDesc,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="usecount != null" >
+        useCount,
+      </if>
+      <if test="rediskey != null" >
+        redisKey,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="redesc != null" >
+        #{redesc,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usecount != null" >
+        #{usecount,jdbcType=INTEGER},
+      </if>
+      <if test="rediskey != null" >
+        #{rediskey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopes" >
+    update sys_red_envelopes
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="redesc != null" >
+        REDesc = #{redesc,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usecount != null" >
+        useCount = #{usecount,jdbcType=INTEGER},
+      </if>
+      <if test="rediskey != null" >
+        redisKey = #{rediskey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopes" >
+    update sys_red_envelopes
+    set userId = #{userid,jdbcType=BIGINT},
+      currency = #{currency,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      REDesc = #{redesc,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      useCount = #{usecount,jdbcType=INTEGER},
+      redisKey = #{rediskey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <update id="updateState" parameterType="Map" >
+    update sys_red_envelopes
+     set state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByRedisKey" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes
+    where redisKey = #{redisKey,jdbcType=BIGINT}
+  </select>
+  <select id="queryByUserIdAndCurrency" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes
+    where userId = #{userId,jdbcType=BIGINT} and currency = #{currencyName,jdbcType=VARCHAR}
+  </select>
+</mapper>

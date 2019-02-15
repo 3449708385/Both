@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.UserWithdrawCashInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.UserWithdrawCashInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyInfoId" property="digitalcurrencyinfoid" jdbcType="BIGINT" />
+    <result column="realTransferAccountsId" property="realtransferaccountsid" jdbcType="BIGINT" />
+    <result column="withdrawAddr" property="withdrawaddr" jdbcType="VARCHAR" />
+    <result column="withdrawAmount" property="withdrawamount" jdbcType="DECIMAL" />
+    <result column="withdrawFee" property="withdrawfee" jdbcType="DECIMAL" />
+    <result column="withdrawProgress" property="withdrawprogress" jdbcType="SMALLINT" />
+    <result column="handleStatus" property="handlestatus" jdbcType="BIT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="enabled" property="enabled" jdbcType="BIT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, digitalCurrencyInfoId, realTransferAccountsId, withdrawAddr, withdrawAmount, 
+    withdrawFee, withdrawProgress, handleStatus, remark, createTime, updateTime, enabled, 
+    deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_withdraw_cash_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user_withdraw_cash_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.UserWithdrawCashInfo" >
+    insert into sys_user_withdraw_cash_info (id, userId, digitalCurrencyInfoId, 
+      realTransferAccountsId, withdrawAddr, withdrawAmount, 
+      withdrawFee, withdrawProgress, handleStatus, 
+      remark, createTime, updateTime, 
+      enabled, deleted)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{digitalcurrencyinfoid,jdbcType=BIGINT}, 
+      #{realtransferaccountsid,jdbcType=BIGINT}, #{withdrawaddr,jdbcType=VARCHAR}, #{withdrawamount,jdbcType=DECIMAL}, 
+      #{withdrawfee,jdbcType=DECIMAL}, #{withdrawprogress,jdbcType=SMALLINT}, #{handlestatus,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{enabled,jdbcType=BIT}, #{deleted,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.UserWithdrawCashInfo" >
+    insert into sys_user_withdraw_cash_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId,
+      </if>
+      <if test="realtransferaccountsid != null" >
+        realTransferAccountsId,
+      </if>
+      <if test="withdrawaddr != null" >
+        withdrawAddr,
+      </if>
+      <if test="withdrawamount != null" >
+        withdrawAmount,
+      </if>
+      <if test="withdrawfee != null" >
+        withdrawFee,
+      </if>
+      <if test="withdrawprogress != null" >
+        withdrawProgress,
+      </if>
+      <if test="handlestatus != null" >
+        handleStatus,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="realtransferaccountsid != null" >
+        #{realtransferaccountsid,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawaddr != null" >
+        #{withdrawaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawamount != null" >
+        #{withdrawamount,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawfee != null" >
+        #{withdrawfee,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawprogress != null" >
+        #{withdrawprogress,jdbcType=SMALLINT},
+      </if>
+      <if test="handlestatus != null" >
+        #{handlestatus,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.UserWithdrawCashInfo" >
+    update sys_user_withdraw_cash_info
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="realtransferaccountsid != null" >
+        realTransferAccountsId = #{realtransferaccountsid,jdbcType=BIGINT},
+      </if>
+      <if test="withdrawaddr != null" >
+        withdrawAddr = #{withdrawaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawamount != null" >
+        withdrawAmount = #{withdrawamount,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawfee != null" >
+        withdrawFee = #{withdrawfee,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawprogress != null" >
+        withdrawProgress = #{withdrawprogress,jdbcType=SMALLINT},
+      </if>
+      <if test="handlestatus != null" >
+        handleStatus = #{handlestatus,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.UserWithdrawCashInfo" >
+    update sys_user_withdraw_cash_info
+    set userId = #{userid,jdbcType=BIGINT},
+      digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      realTransferAccountsId = #{realtransferaccountsid,jdbcType=BIGINT},
+      withdrawAddr = #{withdrawaddr,jdbcType=VARCHAR},
+      withdrawAmount = #{withdrawamount,jdbcType=DECIMAL},
+      withdrawFee = #{withdrawfee,jdbcType=DECIMAL},
+      withdrawProgress = #{withdrawprogress,jdbcType=SMALLINT},
+      handleStatus = #{handlestatus,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=BIT},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryUndisposedInfoByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_withdraw_cash_info
+    where userId = #{userId,jdbcType=BIGINT} and handleStatus = 0
+  </select>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_withdraw_cash_info
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <select id="queryByUserIdAndCurrencyId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_withdraw_cash_info
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT}
+  </select>
+</mapper>

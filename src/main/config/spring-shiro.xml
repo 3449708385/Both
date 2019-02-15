@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx 
+     	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     	http://www.springframework.org/schema/aop 
+     	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/mvc 
+     	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+ 
+     <bean id="myRealm" class="com.yishenxiao.usermanager.service.impl.MyRealmServiceImpl"/>
+     
+     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+       <property name="realm" ref="myRealm" />
+       <!-- <property name="cacheManager" ref="cacheManager" /> -->
+     </bean>
+     
+     <!-- <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager" /> -->
+     
+     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+     
+     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+     
+	 <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	    <property name="securityManager" ref="securityManager"/>
+	 </bean>
+	 
+	 <bean id="shiroSessionListener" class="com.yishenxiao.commons.listeners.ShiroSessionStartup"/>
+	 
+	 <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.MemorySessionDAO"/>
+	 
+	 <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg name="name" value="ycyintang.session.id"/>
+     </bean>
+	  
+     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">   
+        <property name="sessionDAO" ref="sessionDAO"/>  
+        <property name="globalSessionTimeout" value="1800000"/>  
+        <property name ="sessionListeners">   
+           <list>   
+              <ref bean="shiroSessionListener"/>  
+           </list>    
+        </property>  
+        <property name="sessionValidationInterval" value="1800000"/>    
+        <property name="sessionValidationSchedulerEnabled" value="true"/>  
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>  
+        <property name="sessionIdCookieEnabled" value="true"/>  
+     </bean>  
+     
+     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+      <property name="securityManager" ref="securityManager" />  
+      <property name="loginUrl" value="/index.html" />  
+      <property name="successUrl" value="/index.html" />  
+      <property name="unauthorizedUrl" value="/index.html" />  
+      <property name="filterChainDefinitions">  
+        <value>
+          <!-- Anon allows access-->
+          /login/* = anon
+          /user/* = anon
+          <!-- Static resources allow access -->
+          /js/* = anon
+          /css/* = anon
+          /spread/* = anon
+          /statics/* = anon
+          /imgs/* = anon
+          /Both/* = anon
+          /components/* = anon  
+          <!-- 登陆或认证后才可以访问 -->
+          <!-- /page/* = authc -->
+          <!-- /user/* = authc -->
+        </value>
+	  </property>
+     </bean>
+</beans>

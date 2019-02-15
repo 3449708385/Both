@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.IpAddrMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.IpAddr" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="ipAddr" property="ipaddr" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yishenxiao.commons.beans.IpAddr" extends="BaseResultMap" >
+    <result column="phone" property="phone" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, ipAddr, count
+  </sql>
+  <sql id="Blob_Column_List" >
+    phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_ip_addr
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_ip_addr
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.IpAddr" >
+    insert into sys_ip_addr (id, userId, ipAddr, 
+      count, phone)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{ipaddr,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{phone,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.IpAddr" >
+    insert into sys_ip_addr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="ipaddr != null" >
+        ipAddr,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="ipaddr != null" >
+        #{ipaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.IpAddr" >
+    update sys_ip_addr
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="ipaddr != null" >
+        ipAddr = #{ipaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yishenxiao.commons.beans.IpAddr" >
+    update sys_ip_addr
+    set userId = #{userid,jdbcType=BIGINT},
+      ipAddr = #{ipaddr,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.IpAddr" >
+    update sys_ip_addr
+    set userId = #{userid,jdbcType=BIGINT},
+      ipAddr = #{ipaddr,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByIp" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_ip_addr
+    where ipAddr = #{ipAddr,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByIpData" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_ip_addr
+  </select>
+</mapper>

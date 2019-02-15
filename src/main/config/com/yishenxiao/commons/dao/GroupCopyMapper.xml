@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.GroupCopyMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.GroupCopy" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="easemobGroupId" property="easemobgroupid" jdbcType="VARCHAR" />
+    <result column="groupName" property="groupname" jdbcType="VARCHAR" />
+    <result column="groupDesc" property="groupdesc" jdbcType="VARCHAR" />
+    <result column="groupIcon" property="groupicon" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="VARCHAR" />
+    <result column="groupOwner" property="groupowner" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updatetime" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="groupCategoryId" property="groupcategoryid" jdbcType="BIGINT" />
+    <result column="rdIndex" property="rdindex" jdbcType="INTEGER" />
+    <result column="groupCount" property="groupcount" jdbcType="INTEGER" />
+    <result column="groupNameCode" property="groupnamecode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, easemobGroupId, groupName, groupDesc, groupIcon, createTime, groupOwner, updateTime, 
+    userName, groupCategoryId, rdIndex, groupCount, groupNameCode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group_copy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_group_copy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.GroupCopy" >
+    insert into sys_group_copy (id, easemobGroupId, groupName, 
+      groupDesc, groupIcon, createTime, 
+      groupOwner, updateTime, userName, 
+      groupCategoryId, rdIndex, groupCount, 
+      groupNameCode)
+    values (#{id,jdbcType=BIGINT}, #{easemobgroupid,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR}, 
+      #{groupdesc,jdbcType=VARCHAR}, #{groupicon,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, 
+      #{groupowner,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{groupcategoryid,jdbcType=BIGINT}, #{rdindex,jdbcType=INTEGER}, #{groupcount,jdbcType=INTEGER}, 
+      #{groupnamecode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.GroupCopy" >
+    insert into sys_group_copy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="easemobgroupid != null" >
+        easemobGroupId,
+      </if>
+      <if test="groupname != null" >
+        groupName,
+      </if>
+      <if test="groupdesc != null" >
+        groupDesc,
+      </if>
+      <if test="groupicon != null" >
+        groupIcon,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="groupowner != null" >
+        groupOwner,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="groupcategoryid != null" >
+        groupCategoryId,
+      </if>
+      <if test="rdindex != null" >
+        rdIndex,
+      </if>
+      <if test="groupcount != null" >
+        groupCount,
+      </if>
+      <if test="groupnamecode != null" >
+        groupNameCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="easemobgroupid != null" >
+        #{easemobgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupdesc != null" >
+        #{groupdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupicon != null" >
+        #{groupicon,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="groupowner != null" >
+        #{groupowner,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="groupcategoryid != null" >
+        #{groupcategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="rdindex != null" >
+        #{rdindex,jdbcType=INTEGER},
+      </if>
+      <if test="groupcount != null" >
+        #{groupcount,jdbcType=INTEGER},
+      </if>
+      <if test="groupnamecode != null" >
+        #{groupnamecode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.GroupCopy" >
+    update sys_group_copy
+    <set >
+      <if test="easemobgroupid != null" >
+        easemobGroupId = #{easemobgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname != null" >
+        groupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupdesc != null" >
+        groupDesc = #{groupdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupicon != null" >
+        groupIcon = #{groupicon,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="groupowner != null" >
+        groupOwner = #{groupowner,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="groupcategoryid != null" >
+        groupCategoryId = #{groupcategoryid,jdbcType=BIGINT},
+      </if>
+      <if test="rdindex != null" >
+        rdIndex = #{rdindex,jdbcType=INTEGER},
+      </if>
+      <if test="groupcount != null" >
+        groupCount = #{groupcount,jdbcType=INTEGER},
+      </if>
+      <if test="groupnamecode != null" >
+        groupNameCode = #{groupnamecode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.GroupCopy" >
+    update sys_group_copy
+    set easemobGroupId = #{easemobgroupid,jdbcType=VARCHAR},
+      groupName = #{groupname,jdbcType=VARCHAR},
+      groupDesc = #{groupdesc,jdbcType=VARCHAR},
+      groupIcon = #{groupicon,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=VARCHAR},
+      groupOwner = #{groupowner,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      groupCategoryId = #{groupcategoryid,jdbcType=BIGINT},
+      rdIndex = #{rdindex,jdbcType=INTEGER},
+      groupCount = #{groupcount,jdbcType=INTEGER},
+      groupNameCode = #{groupnamecode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByMD5Code" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_group_copy
+    where groupNameCode = #{groupnamecode,jdbcType=BIGINT}
+  </select>
+</mapper>

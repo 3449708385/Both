@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.usermanager.dao.DistributionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.usermanager.beans.DistributionRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="nickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="distributionLevel" property="distributionlevel" jdbcType="INTEGER" />
+    <result column="molAmount" property="molamount" jdbcType="DECIMAL" />
+    <result column="fromUserId" property="fromuserid" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createTime, updateTime, phone, nickName, distributionLevel, molAmount, fromUserId, 
+    userId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_distribution_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_distribution_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.usermanager.beans.DistributionRecord" >
+    insert into sys_distribution_record (id, createTime, updateTime, 
+      phone, nickName, distributionLevel, 
+      molAmount, fromUserId, userId
+      )
+    values (#{id,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{phone,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{distributionlevel,jdbcType=INTEGER}, 
+      #{molamount,jdbcType=DECIMAL}, #{fromuserid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.usermanager.beans.DistributionRecord" >
+    insert into sys_distribution_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
+      <if test="distributionlevel != null" >
+        distributionLevel,
+      </if>
+      <if test="molamount != null" >
+        molAmount,
+      </if>
+      <if test="fromuserid != null" >
+        fromUserId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionlevel != null" >
+        #{distributionlevel,jdbcType=INTEGER},
+      </if>
+      <if test="molamount != null" >
+        #{molamount,jdbcType=DECIMAL},
+      </if>
+      <if test="fromuserid != null" >
+        #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.usermanager.beans.DistributionRecord" >
+    update sys_distribution_record
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionlevel != null" >
+        distributionLevel = #{distributionlevel,jdbcType=INTEGER},
+      </if>
+      <if test="molamount != null" >
+        molAmount = #{molamount,jdbcType=DECIMAL},
+      </if>
+      <if test="fromuserid != null" >
+        fromUserId = #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.usermanager.beans.DistributionRecord" >
+    update sys_distribution_record
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      nickName = #{nickname,jdbcType=VARCHAR},
+      distributionLevel = #{distributionlevel,jdbcType=INTEGER},
+      molAmount = #{molamount,jdbcType=DECIMAL},
+      fromUserId = #{fromuserid,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_distribution_record
+    where userId = #{userId,jdbcType=BIGINT} 
+    <if test="dataId != 0" >
+      and id &lt; #{dataId,jdbcType=BIGINT}
+    </if>
+      order by createTime desc limit #{count,jdbcType=BIGINT}
+  </select>
+</mapper>

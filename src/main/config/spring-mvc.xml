@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx 
+     	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     	http://www.springframework.org/schema/aop 
+     	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/mvc
+     	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
+    <!-- spring and springmvc Separate notes--> 	 
+    <context:component-scan base-package="com.yishenxiao" use-default-filters="false">
+      <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!-- analysis statics,Accessing static resources -->
+    <mvc:resources location="/Both/" mapping="/Both/**/*.*"/>
+    <!-- analysis Controller -->
+    <mvc:annotation-driven content-negotiation-manager= "contentNegotiationManager">
+         <mvc:message-converters register-defaults="true">
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                        <value>WriteDateUseDateFormat</value>
+                        <value>WriteNullListAsEmpty</value>
+                        <value>WriteNullStringAsEmpty</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- Set data return type -->
+	<bean id= "contentNegotiationManager" class= "org.springframework.web.accept.ContentNegotiationManagerFactoryBean">  
+        <property name= "favorPathExtension" value= "true" />  
+        <property name= "favorParameter" value= "true" />  
+        <property name= "parameterName" value= "datatype"/>  
+        <property name= "ignoreAcceptHeader" value= "false"/>
+        <property name= "mediaTypes">
+            <map>  
+                <entry key="3" value="application/json"/>
+                <entry key="1" value="application/xml"/>
+            </map> 
+        </property>
+        <property name= "defaultContentType" value= "application/json" /> 
+    </bean>  
+  <bean class= "org.springframework.web.servlet.view.ContentNegotiatingViewResolver">  
+        <property name="order" value="0"/>  
+        <property name= "contentNegotiationManager" ref= "contentNegotiationManager"/>  
+        <property name="defaultViews">  
+            <list>  
+            </list>  
+        </property>
+    </bean>  
+    <!-- Setting up the springmvc view parser -->
+	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="viewNames" value="*.html" />
+        <property name="suffix" value=""/>
+        <property name="dateToolAttribute" value="dateTool" />
+        <property name="numberToolAttribute" value="numberTool" /> 
+        <property name="requestContextAttribute" value="rc"/>
+        <property name="order" value="0"/>
+	</bean>
+	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/" />
+        <property name="velocityProperties">
+          <props>
+            <prop key="input.encoding">UTF-8</prop>
+            <prop key="output.encoding">UTF-8</prop>
+            <prop key="contentType">text/html;charset=UTF-8</prop>
+          </props>
+        </property>
+	</bean>
+    <bean id="viewResolverJsp" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="viewNames" value="*.jsp" />
+        <property name="suffix" value=""/>
+        <property name="order" value="1"/>
+    </bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+	    <property name="contentType" value="text/html; charset=utf-8"/>
+	    <property name="cache" value="false"/>
+	    <property name="viewNames" value="*.ftl" />
+        <property name="suffix" value=""/>
+        <property name="order" value="2"/>
+	</bean>
+	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	    <property name="templateLoaderPath" value="/WEB-INF/"/>
+	</bean>	
+	<!-- Configuring the Google validation plug-in -->
+	<bean id="producer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+	  <property name="config">
+	    <bean class="com.google.code.kaptcha.util.Config">
+	      <constructor-arg type="java.util.Properties">
+	        <props>
+	            <prop key="kaptcha.border">yes</prop>
+	            
+				<prop key="kaptcha.border.color">105,179,90</prop>
+				
+				<prop key="kaptcha.textproducer.font.color">blue</prop>
+				
+				<prop key="kaptcha.image.width">125</prop>
+				
+				<prop key="kaptcha.image.height">45</prop>
+				
+				<prop key="kaptcha.textproducer.char.string">0123456789</prop>
+				
+				<prop key="kaptcha.textproducer.font.size">40</prop>
+				
+				<prop key="kaptcha.session.key">code</prop>
+				
+				<prop key="kaptcha.textproducer.char.length">4</prop>
+				
+				<prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>
+	        </props>
+	      </constructor-arg>
+	   </bean>
+	 </property>  
+  </bean>  
+  
+  <!-- exception Resolver -->  
+  <bean id="exceptionResolver" class="com.yishenxiao.commons.utils.MyExceptionHandler"></bean>  
+  <!-- file upload -->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxInMemorySize">
+        <value>8388608</value>
+    </property>
+  </bean>
+  <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+  <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJacksonHttpMessageConverter" />
+            </list>
+        </property>
+  </bean>
+  <!-- IE ajax error -->  
+  <bean id="mappingJacksonHttpMessageConverter"  
+       class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+       <property name="supportedMediaTypes">  
+           <list>
+               <value>text/html;charset=utf-8</value>
+           </list>
+       </property>
+  </bean>
+</beans>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.RedEnvelopesReturnMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.RedEnvelopesReturn" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyInfoId" property="digitalcurrencyinfoid" jdbcType="BIGINT" />
+    <result column="fromUserId" property="fromuserid" jdbcType="BIGINT" />
+    <result column="redenvelopesId" property="redenvelopesid" jdbcType="BIGINT" />
+    <result column="redCount" property="redcount" jdbcType="INTEGER" />
+    <result column="monery" property="monery" jdbcType="DECIMAL" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, digitalCurrencyInfoId, fromUserId, redenvelopesId, redCount, monery, 
+    state, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes_return
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_red_envelopes_return
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopesReturn" >
+    insert into sys_red_envelopes_return (id, userId, digitalCurrencyInfoId, 
+      fromUserId, redenvelopesId, redCount, 
+      monery, state, createTime, 
+      updateTime)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{digitalcurrencyinfoid,jdbcType=BIGINT}, 
+      #{fromuserid,jdbcType=BIGINT}, #{redenvelopesid,jdbcType=BIGINT}, #{redcount,jdbcType=INTEGER}, 
+      #{monery,jdbcType=DECIMAL}, #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopesReturn" >
+    insert into sys_red_envelopes_return
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId,
+      </if>
+      <if test="fromuserid != null" >
+        fromUserId,
+      </if>
+      <if test="redenvelopesid != null" >
+        redenvelopesId,
+      </if>
+      <if test="redcount != null" >
+        redCount,
+      </if>
+      <if test="monery != null" >
+        monery,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="fromuserid != null" >
+        #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="redenvelopesid != null" >
+        #{redenvelopesid,jdbcType=BIGINT},
+      </if>
+      <if test="redcount != null" >
+        #{redcount,jdbcType=INTEGER},
+      </if>
+      <if test="monery != null" >
+        #{monery,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopesReturn" >
+    update sys_red_envelopes_return
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="fromuserid != null" >
+        fromUserId = #{fromuserid,jdbcType=BIGINT},
+      </if>
+      <if test="redenvelopesid != null" >
+        redenvelopesId = #{redenvelopesid,jdbcType=BIGINT},
+      </if>
+      <if test="redcount != null" >
+        redCount = #{redcount,jdbcType=INTEGER},
+      </if>
+      <if test="monery != null" >
+        monery = #{monery,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.RedEnvelopesReturn" >
+    update sys_red_envelopes_return
+    set userId = #{userid,jdbcType=BIGINT},
+      digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      fromUserId = #{fromuserid,jdbcType=BIGINT},
+      redenvelopesId = #{redenvelopesid,jdbcType=BIGINT},
+      redCount = #{redcount,jdbcType=INTEGER},
+      monery = #{monery,jdbcType=DECIMAL},
+      state = #{state,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes_return
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="queryByUserIdAndCurrencyId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_red_envelopes_return
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalCurrencyInfoId,jdbcType=BIGINT}
+  </select>
+</mapper>

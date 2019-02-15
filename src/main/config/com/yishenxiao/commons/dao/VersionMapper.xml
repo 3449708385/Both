@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.Version" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="versionName" property="versionname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="versionNum" property="versionnum" jdbcType="VARCHAR" />
+    <result column="androidState" property="androidstate" jdbcType="INTEGER" />
+    <result column="iosState" property="iosstate" jdbcType="INTEGER" />
+    <result column="androidUrl" property="androidurl" jdbcType="VARCHAR" />
+    <result column="iosUrl" property="iosurl" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yishenxiao.commons.beans.Version" extends="BaseResultMap" >
+    <result column="versionDesc" property="versiondesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, versionName, type, versionNum, androidState, iosState, androidUrl, iosUrl, createTime, 
+    updateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    versionDesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_version
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_version
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.Version" >
+    insert into sys_version (id, versionName, type, 
+      versionNum, androidState, iosState, 
+      androidUrl, iosUrl, createTime, 
+      updateTime, versionDesc)
+    values (#{id,jdbcType=BIGINT}, #{versionname,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{versionnum,jdbcType=VARCHAR}, #{androidstate,jdbcType=INTEGER}, #{iosstate,jdbcType=INTEGER}, 
+      #{androidurl,jdbcType=VARCHAR}, #{iosurl,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{versiondesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.Version" >
+    insert into sys_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="versionname != null" >
+        versionName,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="versionnum != null" >
+        versionNum,
+      </if>
+      <if test="androidstate != null" >
+        androidState,
+      </if>
+      <if test="iosstate != null" >
+        iosState,
+      </if>
+      <if test="androidurl != null" >
+        androidUrl,
+      </if>
+      <if test="iosurl != null" >
+        iosUrl,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="versiondesc != null" >
+        versionDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="versionname != null" >
+        #{versionname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="versionnum != null" >
+        #{versionnum,jdbcType=VARCHAR},
+      </if>
+      <if test="androidstate != null" >
+        #{androidstate,jdbcType=INTEGER},
+      </if>
+      <if test="iosstate != null" >
+        #{iosstate,jdbcType=INTEGER},
+      </if>
+      <if test="androidurl != null" >
+        #{androidurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iosurl != null" >
+        #{iosurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versiondesc != null" >
+        #{versiondesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.Version" >
+    update sys_version
+    <set >
+      <if test="versionname != null" >
+        versionName = #{versionname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="versionnum != null" >
+        versionNum = #{versionnum,jdbcType=VARCHAR},
+      </if>
+      <if test="androidstate != null" >
+        androidState = #{androidstate,jdbcType=INTEGER},
+      </if>
+      <if test="iosstate != null" >
+        iosState = #{iosstate,jdbcType=INTEGER},
+      </if>
+      <if test="androidurl != null" >
+        androidUrl = #{androidurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iosurl != null" >
+        iosUrl = #{iosurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versiondesc != null" >
+        versionDesc = #{versiondesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yishenxiao.commons.beans.Version" >
+    update sys_version
+    set versionName = #{versionname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      versionNum = #{versionnum,jdbcType=VARCHAR},
+      androidState = #{androidstate,jdbcType=INTEGER},
+      iosState = #{iosstate,jdbcType=INTEGER},
+      androidUrl = #{androidurl,jdbcType=VARCHAR},
+      iosUrl = #{iosurl,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      versionDesc = #{versiondesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.Version" >
+    update sys_version
+    set versionName = #{versionname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      versionNum = #{versionnum,jdbcType=VARCHAR},
+      androidState = #{androidstate,jdbcType=INTEGER},
+      iosState = #{iosstate,jdbcType=INTEGER},
+      androidUrl = #{androidurl,jdbcType=VARCHAR},
+      iosUrl = #{iosurl,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryByLastTime" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_version order by id desc limit 1
+  </select>
+</mapper>

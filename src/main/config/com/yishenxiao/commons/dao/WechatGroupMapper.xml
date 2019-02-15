@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.commons.dao.WechatGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.commons.beans.WechatGroup" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="AttrStatus" property="attrstatus" jdbcType="INTEGER" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="INTEGER" />
+    <result column="Province" property="province" jdbcType="VARCHAR" />
+    <result column="SnsFlag" property="snsflag" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="DisplayName" property="displayname" jdbcType="VARCHAR" />
+    <result column="NickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="MemberCount" property="membercount" jdbcType="INTEGER" />
+    <result column="RemarkName" property="remarkname" jdbcType="VARCHAR" />
+    <result column="KeyWord" property="keyword" jdbcType="VARCHAR" />
+    <result column="Owner" property="owner" jdbcType="VARCHAR" />
+    <result column="Puid" property="puid" jdbcType="VARCHAR" />
+    <result column="NickNameMd5" property="nicknamemd5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, createTime, AttrStatus, City, Sex, Province, SnsFlag, UserName, DisplayName, 
+    NickName, MemberCount, RemarkName, KeyWord, Owner, Puid, NickNameMd5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_group
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_wechat_group
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.commons.beans.WechatGroup" >
+    insert into sys_wechat_group (id, createTime, AttrStatus, 
+      City, Sex, Province, 
+      SnsFlag, UserName, DisplayName, 
+      NickName, MemberCount, RemarkName, 
+      KeyWord, Owner, Puid, 
+      NickNameMd5)
+    values (#{id,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, #{attrstatus,jdbcType=INTEGER}, 
+      #{city,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{snsflag,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{displayname,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{membercount,jdbcType=INTEGER}, #{remarkname,jdbcType=VARCHAR}, 
+      #{keyword,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{puid,jdbcType=VARCHAR}, 
+      #{nicknamemd5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.commons.beans.WechatGroup" >
+    insert into sys_wechat_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="attrstatus != null" >
+        AttrStatus,
+      </if>
+      <if test="city != null" >
+        City,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="province != null" >
+        Province,
+      </if>
+      <if test="snsflag != null" >
+        SnsFlag,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="displayname != null" >
+        DisplayName,
+      </if>
+      <if test="nickname != null" >
+        NickName,
+      </if>
+      <if test="membercount != null" >
+        MemberCount,
+      </if>
+      <if test="remarkname != null" >
+        RemarkName,
+      </if>
+      <if test="keyword != null" >
+        KeyWord,
+      </if>
+      <if test="owner != null" >
+        Owner,
+      </if>
+      <if test="puid != null" >
+        Puid,
+      </if>
+      <if test="nicknamemd5 != null" >
+        NickNameMd5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attrstatus != null" >
+        #{attrstatus,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="snsflag != null" >
+        #{snsflag,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="membercount != null" >
+        #{membercount,jdbcType=INTEGER},
+      </if>
+      <if test="remarkname != null" >
+        #{remarkname,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="puid != null" >
+        #{puid,jdbcType=VARCHAR},
+      </if>
+      <if test="nicknamemd5 != null" >
+        #{nicknamemd5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.commons.beans.WechatGroup" >
+    update sys_wechat_group
+    <set >
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attrstatus != null" >
+        AttrStatus = #{attrstatus,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        City = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        Province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="snsflag != null" >
+        SnsFlag = #{snsflag,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="displayname != null" >
+        DisplayName = #{displayname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="membercount != null" >
+        MemberCount = #{membercount,jdbcType=INTEGER},
+      </if>
+      <if test="remarkname != null" >
+        RemarkName = #{remarkname,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        KeyWord = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        Owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="puid != null" >
+        Puid = #{puid,jdbcType=VARCHAR},
+      </if>
+      <if test="nicknamemd5 != null" >
+        NickNameMd5 = #{nicknamemd5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.commons.beans.WechatGroup" >
+    update sys_wechat_group
+    set createTime = #{createtime,jdbcType=TIMESTAMP},
+      AttrStatus = #{attrstatus,jdbcType=INTEGER},
+      City = #{city,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=INTEGER},
+      Province = #{province,jdbcType=VARCHAR},
+      SnsFlag = #{snsflag,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      DisplayName = #{displayname,jdbcType=VARCHAR},
+      NickName = #{nickname,jdbcType=VARCHAR},
+      MemberCount = #{membercount,jdbcType=INTEGER},
+      RemarkName = #{remarkname,jdbcType=VARCHAR},
+      KeyWord = #{keyword,jdbcType=VARCHAR},
+      Owner = #{owner,jdbcType=VARCHAR},
+      Puid = #{puid,jdbcType=VARCHAR},
+      NickNameMd5 = #{nicknamemd5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryWechatGroupData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_group where MemberCount>=20 group by NickNameMd5,NickName;
+  </select>
+  <select id="queryWechatGroupDianzhongData" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_group where NickName like "%点钟%"
+  </select>
+  <select id="queryByUserName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_group where UserName = #{target,jdbcType=VARCHAR}
+  </select>
+  <select id="queryWechatGroupDataByCOU" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_wechat_group where id > #{cou,jdbcType=INTEGER}
+  </select>
+</mapper>

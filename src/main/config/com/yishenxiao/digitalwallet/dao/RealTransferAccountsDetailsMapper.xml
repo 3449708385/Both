@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.RealTransferAccountsDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.RealTransferAccountsDetails" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyInfoId" property="digitalcurrencyinfoid" jdbcType="BIGINT" />
+    <result column="transferType" property="transfertype" jdbcType="SMALLINT" />
+    <result column="transferAddr" property="transferaddr" jdbcType="VARCHAR" />
+    <result column="receiptAddr" property="receiptaddr" jdbcType="VARCHAR" />
+    <result column="transferTxHash" property="transfertxhash" jdbcType="VARCHAR" />
+    <result column="gasUpperLimit" property="gasupperlimit" jdbcType="BIGINT" />
+    <result column="gasPrice" property="gasprice" jdbcType="VARCHAR" />
+    <result column="gasUsed" property="gasused" jdbcType="BIGINT" />
+    <result column="transferValue" property="transfervalue" jdbcType="DECIMAL" />
+    <result column="realTransferFee" property="realtransferfee" jdbcType="DECIMAL" />
+    <result column="transferProgress" property="transferprogress" jdbcType="SMALLINT" />
+    <result column="handleStatus" property="handlestatus" jdbcType="BIT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="enabled" property="enabled" jdbcType="BIT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, digitalCurrencyInfoId, transferType, transferAddr, receiptAddr, transferTxHash, 
+    gasUpperLimit, gasPrice, gasUsed, transferValue, realTransferFee, transferProgress, 
+    handleStatus, createTime, updateTime, enabled, deleted
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_real_transfer_accounts_details
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_real_transfer_accounts_details
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.RealTransferAccountsDetails" >
+  	<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_real_transfer_accounts_details (id, userId, digitalCurrencyInfoId, 
+      transferType, transferAddr, receiptAddr, 
+      transferTxHash, gasUpperLimit, gasPrice, 
+      gasUsed, transferValue, realTransferFee, 
+      transferProgress, handleStatus, createTime, 
+      updateTime, enabled, deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{digitalcurrencyinfoid,jdbcType=BIGINT}, 
+      #{transfertype,jdbcType=SMALLINT}, #{transferaddr,jdbcType=VARCHAR}, #{receiptaddr,jdbcType=VARCHAR}, 
+      #{transfertxhash,jdbcType=VARCHAR}, #{gasupperlimit,jdbcType=BIGINT}, #{gasprice,jdbcType=VARCHAR}, 
+      #{gasused,jdbcType=BIGINT}, #{transfervalue,jdbcType=DECIMAL}, #{realtransferfee,jdbcType=DECIMAL}, 
+      #{transferprogress,jdbcType=SMALLINT}, #{handlestatus,jdbcType=BIT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=BIT}, #{deleted,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.RealTransferAccountsDetails" >
+    insert into sys_real_transfer_accounts_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId,
+      </if>
+      <if test="transfertype != null" >
+        transferType,
+      </if>
+      <if test="transferaddr != null" >
+        transferAddr,
+      </if>
+      <if test="receiptaddr != null" >
+        receiptAddr,
+      </if>
+      <if test="transfertxhash != null" >
+        transferTxHash,
+      </if>
+      <if test="gasupperlimit != null" >
+        gasUpperLimit,
+      </if>
+      <if test="gasprice != null" >
+        gasPrice,
+      </if>
+      <if test="gasused != null" >
+        gasUsed,
+      </if>
+      <if test="transfervalue != null" >
+        transferValue,
+      </if>
+      <if test="realtransferfee != null" >
+        realTransferFee,
+      </if>
+      <if test="transferprogress != null" >
+        transferProgress,
+      </if>
+      <if test="handlestatus != null" >
+        handleStatus,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="transfertype != null" >
+        #{transfertype,jdbcType=SMALLINT},
+      </if>
+      <if test="transferaddr != null" >
+        #{transferaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptaddr != null" >
+        #{receiptaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="transfertxhash != null" >
+        #{transfertxhash,jdbcType=VARCHAR},
+      </if>
+      <if test="gasupperlimit != null" >
+        #{gasupperlimit,jdbcType=BIGINT},
+      </if>
+      <if test="gasprice != null" >
+        #{gasprice,jdbcType=VARCHAR},
+      </if>
+      <if test="gasused != null" >
+        #{gasused,jdbcType=BIGINT},
+      </if>
+      <if test="transfervalue != null" >
+        #{transfervalue,jdbcType=DECIMAL},
+      </if>
+      <if test="realtransferfee != null" >
+        #{realtransferfee,jdbcType=DECIMAL},
+      </if>
+      <if test="transferprogress != null" >
+        #{transferprogress,jdbcType=SMALLINT},
+      </if>
+      <if test="handlestatus != null" >
+        #{handlestatus,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.RealTransferAccountsDetails" >
+    update sys_real_transfer_accounts_details
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyinfoid != null" >
+        digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      </if>
+      <if test="transfertype != null" >
+        transferType = #{transfertype,jdbcType=SMALLINT},
+      </if>
+      <if test="transferaddr != null" >
+        transferAddr = #{transferaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptaddr != null" >
+        receiptAddr = #{receiptaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="transfertxhash != null" >
+        transferTxHash = #{transfertxhash,jdbcType=VARCHAR},
+      </if>
+      <if test="gasupperlimit != null" >
+        gasUpperLimit = #{gasupperlimit,jdbcType=BIGINT},
+      </if>
+      <if test="gasprice != null" >
+        gasPrice = #{gasprice,jdbcType=VARCHAR},
+      </if>
+      <if test="gasused != null" >
+        gasUsed = #{gasused,jdbcType=BIGINT},
+      </if>
+      <if test="transfervalue != null" >
+        transferValue = #{transfervalue,jdbcType=DECIMAL},
+      </if>
+      <if test="realtransferfee != null" >
+        realTransferFee = #{realtransferfee,jdbcType=DECIMAL},
+      </if>
+      <if test="transferprogress != null" >
+        transferProgress = #{transferprogress,jdbcType=SMALLINT},
+      </if>
+      <if test="handlestatus != null" >
+        handleStatus = #{handlestatus,jdbcType=BIT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.RealTransferAccountsDetails" >
+    update sys_real_transfer_accounts_details
+    set userId = #{userid,jdbcType=BIGINT},
+      digitalCurrencyInfoId = #{digitalcurrencyinfoid,jdbcType=BIGINT},
+      transferType = #{transfertype,jdbcType=SMALLINT},
+      transferAddr = #{transferaddr,jdbcType=VARCHAR},
+      receiptAddr = #{receiptaddr,jdbcType=VARCHAR},
+      transferTxHash = #{transfertxhash,jdbcType=VARCHAR},
+      gasUpperLimit = #{gasupperlimit,jdbcType=BIGINT},
+      gasPrice = #{gasprice,jdbcType=VARCHAR},
+      gasUsed = #{gasused,jdbcType=BIGINT},
+      transferValue = #{transfervalue,jdbcType=DECIMAL},
+      realTransferFee = #{realtransferfee,jdbcType=DECIMAL},
+      transferProgress = #{transferprogress,jdbcType=SMALLINT},
+      handleStatus = #{handlestatus,jdbcType=BIT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      enabled = #{enabled,jdbcType=BIT},
+      deleted = #{deleted,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryUndisposedInfoByUserIdAndDigitalCurrencyId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_real_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalCurrencyInfoId,jdbcType=BIGINT} and transferType = 1 and handleStatus = 0
+  </select>
+  <select id="queryUndisposedPoundageInfoByUserIdAndDigitalCurrencyId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_real_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyInfoId = #{digitalCurrencyInfoId,jdbcType=BIGINT} and transferType = 3 and handleStatus = 0
+  </select>
+  <select id="queryUndisposedInfoByUserId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_real_transfer_accounts_details
+    where userId = #{userId,jdbcType=BIGINT} and transferType = 1 and handleStatus = 0
+  </select>
+</mapper>

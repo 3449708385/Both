@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd        
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	
+	<bean id="trigger" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerBean_2"/><!-- 每小时注册机器人！ -->
+				<ref bean="cronTriggerBean_3"/><!-- 解锁ip限制！ -->
+				<ref bean="rsh_simpleTrigger1"/><!-- 项目启动就获取一次mogo！ -->
+				<ref bean="cronTriggerBean_4"/><!-- 每1分钟获取一次mogo！ -->
+				<ref bean="rsh_simpleTrigger2"/><!-- 项目启动就获取一次美元汇率！ -->
+				<ref bean="cronTriggerBean_5"/><!-- 每2分钟获取一次美元汇率！ -->
+				<ref bean="cronTriggerBean_6"/><!-- 每晚自动禁言用户 -->
+			</list>
+		</property>
+	</bean>  
+	<bean id="cronTriggerBean_6" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_6"></property>
+		<property name="cronExpression" value="0 0 */21 * * ?"></property>      
+	</bean>
+	<bean id="jobDetail_6" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yishenxiao.commons.service.impl.quzrtz.UserGagImpl"></property>
+		<property name="durability" value="true" />     
+	</bean>
+    
+	<bean id="cronTriggerBean_2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_2"></property>
+		<property name="cronExpression" value="0 0 4 * * ?"></property>
+	</bean>
+	<bean id="jobDetail_2" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yishenxiao.commons.service.impl.quzrtz.SinupEasemobUserServiceImpl"></property>
+		<property name="durability" value="true" />  
+	</bean>
+    
+	<bean id="cronTriggerBean_3" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_3"></property>
+		<property name="cronExpression" value="0 0 0 * * ?"></property>
+	</bean>
+	<bean id="jobDetail_3" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yishenxiao.commons.service.impl.quzrtz.UnLockIpServiceImpl"></property>
+		<property name="durability" value="true" />
+	</bean>
+
+	<!-- 配置项目启动后任务就执行一次-->
+	<bean id="rsh_simpleTrigger1" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+		<property name="jobDetail" ref="jobDetail_4" />
+		<property name="startDelay" value="500" />  
+		<property name="repeatInterval" value="0" />  
+		<property name="repeatCount" value="0" />  
+	</bean> 
+	<bean id="cronTriggerBean_4" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_4"></property>
+		<property name="cronExpression" value="0 */1 * * * ?"></property>
+	</bean>
+	<bean id="jobDetail_4" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yishenxiao.commons.service.impl.quzrtz.HandleQuotationDataServiceImpl"></property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<!-- 配置项目启动后任务就执行一次-->
+	<bean id="rsh_simpleTrigger2" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+		<property name="jobDetail" ref="jobDetail_5" />
+		<property name="startDelay" value="500" />  
+		<property name="repeatInterval" value="0" />  
+		<property name="repeatCount" value="0" />  
+	</bean> 
+	<bean id="cronTriggerBean_5" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail_5"></property>
+		<property name="cronExpression" value="0 0 17 * * ?"></property>
+	</bean>
+	<bean id="jobDetail_5" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yishenxiao.commons.service.impl.quzrtz.HandleExchangeRateDataServiceImpl"></property>
+		<property name="durability" value="true" />
+	</bean>
+</beans>

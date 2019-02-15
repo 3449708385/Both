@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yishenxiao.digitalwallet.dao.UserDigitalCurrencyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyId" property="digitalcurrencyid" jdbcType="BIGINT" />
+    <result column="digitalCurrencyBalance" property="digitalcurrencybalance" jdbcType="DECIMAL" />
+    <result column="foreignAccountBalance" property="foreignaccountbalance" jdbcType="DECIMAL" />
+    <result column="borrowedBalance" property="borrowedbalance" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, digitalCurrencyId, digitalCurrencyBalance, foreignAccountBalance, borrowedBalance
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_digital_currency_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user_digital_currency_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    insert into sys_user_digital_currency_info (id, userId, digitalCurrencyId, 
+      digitalCurrencyBalance, foreignAccountBalance, 
+      borrowedBalance)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{digitalcurrencyid,jdbcType=BIGINT}, 
+      #{digitalcurrencybalance,jdbcType=DECIMAL}, #{foreignaccountbalance,jdbcType=DECIMAL}, 
+      #{borrowedbalance,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    insert into sys_user_digital_currency_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="digitalcurrencyid != null" >
+        digitalCurrencyId,
+      </if>
+      <if test="digitalcurrencybalance != null" >
+        digitalCurrencyBalance,
+      </if>
+      <if test="foreignaccountbalance != null" >
+        foreignAccountBalance,
+      </if>
+      <if test="borrowedbalance != null" >
+        borrowedBalance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyid != null" >
+        #{digitalcurrencyid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencybalance != null" >
+        #{digitalcurrencybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="foreignaccountbalance != null" >
+        #{foreignaccountbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowedbalance != null" >
+        #{borrowedbalance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    update sys_user_digital_currency_info
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencyid != null" >
+        digitalCurrencyId = #{digitalcurrencyid,jdbcType=BIGINT},
+      </if>
+      <if test="digitalcurrencybalance != null" >
+        digitalCurrencyBalance = #{digitalcurrencybalance,jdbcType=DECIMAL},
+      </if>
+      <if test="foreignaccountbalance != null" >
+        foreignAccountBalance = #{foreignaccountbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowedbalance != null" >
+        borrowedBalance = #{borrowedbalance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    update sys_user_digital_currency_info
+    set userId = #{userid,jdbcType=BIGINT},
+      digitalCurrencyId = #{digitalcurrencyid,jdbcType=BIGINT},
+      digitalCurrencyBalance = #{digitalcurrencybalance,jdbcType=DECIMAL},
+      foreignAccountBalance = #{foreignaccountbalance,jdbcType=DECIMAL},
+      borrowedBalance = #{borrowedbalance,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryUserDigitalCurrencyInfoData" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_digital_currency_info
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <update id="updateDigitalcurrencybalance" parameterType="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    update sys_user_digital_currency_info
+    set digitalCurrencyBalance = digitalCurrencyBalance - #{amount,jdbcType=DECIMAL}
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalcurrencyid,jdbcType=BIGINT}
+  </update>
+  <select id="queryByDigitalCurrencyId" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_digital_currency_info
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </select>
+  <update id="updateByDigitalCurrency" parameterType="com.yishenxiao.digitalwallet.beans.UserDigitalCurrencyInfo" >
+    update sys_user_digital_currency_info
+    <set >
+      <if test="type == 0" >
+        digitalCurrencyBalance = digitalCurrencyBalance + #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="type == 1" >
+        digitalCurrencyBalance = digitalCurrencyBalance - #{amount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </update>
+  <select id="queryByDigitalCurrencyIdList" resultMap="BaseResultMap" parameterType="Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_digital_currency_info
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </select>
+  <update id="updatUserDigitalCurrencyData" parameterType="Map" >
+    update sys_user_digital_currency_info
+      set  digitalCurrencyBalance = digitalCurrencyBalance + #{monery,jdbcType=DOUBLE}
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalcurrencyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateData" parameterType="Map" >
+    update sys_user_digital_currency_info
+      set  digitalCurrencyBalance = digitalCurrencyBalance + #{amount,jdbcType=DOUBLE}
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </update>
+  <insert id="insertList" useGeneratedKeys="true" parameterType="java.util.List">  
+    <selectKey resultType="long" keyProperty="id" order="AFTER">  
+        SELECT  
+        LAST_INSERT_ID()  
+    </selectKey>  
+    insert into sys_user_digital_currency_info (userId, digitalCurrencyId, digitalCurrencyBalance, foreignAccountBalance, borrowedBalance)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.userid},#{item.digitalcurrencyid},#{item.digitalcurrencybalance},#{item.foreignaccountbalance},#{item.borrowedbalance})
+    </foreach>  
+  </insert>
+  <update id="updateUserData" parameterType="Map" >
+    update sys_user_digital_currency_info
+      set foreignAccountBalance = #{foreignAccount,jdbcType=DOUBLE},
+          borrowedBalance =borrowedBalance + #{borrowFrom,jdbcType=DOUBLE}
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateForeignUserData" parameterType="Map" >
+    update sys_user_digital_currency_info
+      set foreignAccountBalance = #{foreignAccount,jdbcType=DOUBLE}
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByDigitalBalance" parameterType="Map" >
+    update sys_user_digital_currency_info
+      set digitalCurrencyBalance = #{amount,jdbcType=DOUBLE}
+    where userId = #{userId,jdbcType=BIGINT} and digitalCurrencyId = #{digitalCurrencyId,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByuserId" parameterType="java.lang.Long" >
+    delete from sys_user_digital_currency_info
+    where userId = #{userId,jdbcType=BIGINT}
+  </delete>
+</mapper>
